@@ -4,3 +4,4 @@ export default {
     autoprefixer: {}
   }
 };
+// Project version: LogForge V1.1

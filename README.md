@@ -1,4 +1,4 @@
-# LogForge V1.0
+# LogForge V1.1
 
 SIEM-style log operations dashboard for collecting, searching and reviewing defensive telemetry.
 
@@ -47,6 +47,13 @@ API: <http://localhost:8000/docs>
 
 Set `DEMO_MODE=true` and `VITE_DEMO_MODE=true` for public demos. Demo mode allows dashboard preview and uses demo-safe local configuration. It does not send SMTP mail or require email verification.
 
+## Public Demo Readiness
+
+- Keep demo log events synthetic and avoid customer-like identifiers.
+- Disable or clearly scope ingestion keys before exposing hosted demos.
+- Label alert rules and saved searches as portfolio examples.
+- Use short-lived demo storage for public walkthrough environments.
+
 ## Environment Variables
 
 Copy `.env.example` and override values locally. Do not commit real `.env` files. Important variables include `DEMO_MODE`, `SECRET_KEY`, `DATABASE_URL`, `REDIS_URL`, `CLICKHOUSE_*`, `CORS_ORIGINS` and `VITE_DEMO_MODE`.
@@ -86,3 +93,4 @@ LogForge complements SentinelX endpoint telemetry, ThreatVault file analysis and
 ## License
 
 MIT.
+<!-- Project version: LogForge V1.1 -->

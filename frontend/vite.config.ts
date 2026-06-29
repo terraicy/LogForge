@@ -21,3 +21,4 @@ export default defineConfig({
     }
   }
 });
+// Project version: LogForge V1.1

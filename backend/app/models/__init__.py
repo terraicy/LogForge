@@ -11,3 +11,4 @@ __all__ = [
     "SavedSearch",
     "User",
 ]
+# Project version: LogForge V1.1

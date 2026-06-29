@@ -149,3 +149,4 @@ function ItemTable({ items, columns }: { items: Item[]; columns: string[] }) {
     </div>
   );
 }
+// Project version: LogForge V1.1

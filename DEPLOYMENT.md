@@ -1,4 +1,4 @@
-# LogForge V1.0 Deployment Notes
+# LogForge V1.1 Deployment Notes
 
 This public version is prepared for local/demo hosting, not production operation.
 
@@ -31,3 +31,4 @@ docker compose up --build
 - Set `CORS_ORIGINS` to the hosted frontend origin.
 - Do not deploy with `.env.example` secrets.
 - Keep ClickHouse/PostgreSQL volumes private.
+<!-- Project version: LogForge V1.1 -->

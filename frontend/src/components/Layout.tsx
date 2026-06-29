@@ -85,3 +85,4 @@ export function PrimaryButton(props: ButtonHTMLAttributes<HTMLButtonElement>) {
 export function Panel({ children }: { children: ReactNode }) {
   return <section className="rounded-md border border-line bg-surface p-4">{children}</section>;
 }
+// Project version: LogForge V1.1

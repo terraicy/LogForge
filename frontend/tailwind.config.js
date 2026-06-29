@@ -18,3 +18,4 @@ export default {
   },
   plugins: []
 };
+// Project version: LogForge V1.1

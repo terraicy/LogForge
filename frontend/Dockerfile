@@ -5,3 +5,4 @@ COPY package.json package-lock.json* ./
 RUN npm install
 COPY . .
 CMD ["npm", "run", "dev"]
+# Project version: LogForge V1.1
