@@ -1,4 +1,4 @@
-# LogForge V1.1
+# LogForge V1.2
 
 SIEM-style log operations dashboard for collecting, searching and reviewing defensive telemetry.
 
@@ -93,4 +93,4 @@ LogForge complements SentinelX endpoint telemetry, ThreatVault file analysis and
 ## License
 
 MIT.
-<!-- Project version: LogForge V1.1 -->
+<!-- Project version: LogForge V1.2 -->

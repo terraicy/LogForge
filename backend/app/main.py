@@ -6,7 +6,7 @@ from app.core.config import settings
 from app.services.bootstrap import bootstrap_admin
 from app.services.clickhouse import ensure_events_table
 
-app = FastAPI(title=settings.app_name, version="1.1.0")
+app = FastAPI(title=settings.app_name, version="1.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,4 +29,4 @@ def health():
 
 
 app.include_router(router, prefix=settings.api_v1_prefix)
-# Project version: LogForge V1.1
+# Project version: LogForge V1.2

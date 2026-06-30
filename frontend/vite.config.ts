@@ -21,4 +21,4 @@ export default defineConfig({
     }
   }
 });
-// Project version: LogForge V1.1
+// Project version: LogForge V1.2
