@@ -1,5 +1,4 @@
-# LogForge V1.4
-
+# LogForge V1.0
 SIEM-style log operations dashboard for collecting, searching and reviewing defensive telemetry.
 
 ## Product Overview
@@ -80,12 +79,19 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 
 ## Roadmap
 
-- Expanded V1.3 roadmap notes for richer SOC demo data, saved dashboards, and query preset walkthroughs.
-- Add richer demo seed data for sources, alerts and audit logs.
-- Add saved dashboard widgets for common SOC views.
-- Add exportable query presets for portfolio walkthroughs.
-- Add role-limited public demo controls.
-- Add hosted read-only demo deployment profile.
+### Already implemented
+
+- FastAPI and React public demo for sources, alert rules, saved searches and audit logs.
+- C++ log normalizer path with safe Python fallback and cached ClickHouse client usage.
+- Production guards for secrets, CORS, debug mode and demo isolation.
+- Health and forced-normalizer smoke checks for the C++ acceleration path.
+
+### Will be implemented
+
+- Richer synthetic SOC demo data for sources, alerts and audit events.
+- Saved dashboard widgets and exportable query presets.
+- Role-limited public demo controls and hosted read-only profile.
+- Expanded ingestion validation and query workflow tests.
 
 ## KRYNEX Ecosystem
 
@@ -94,5 +100,5 @@ LogForge complements SentinelX endpoint telemetry, ThreatVault file analysis and
 ## License
 
 MIT.
-<!-- Project version: LogForge V1.4 -->
+<!-- Project version: LogForge V1.0 -->
 
