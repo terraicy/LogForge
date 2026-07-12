@@ -112,3 +112,4 @@ def downgrade() -> None:
         op.drop_table(table)
 # Project version: LogForge V1.4
 
+

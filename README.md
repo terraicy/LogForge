@@ -102,3 +102,4 @@ LogForge complements SentinelX endpoint telemetry, ThreatVault file analysis and
 MIT.
 <!-- Project version: LogForge V1.0 -->
 
+

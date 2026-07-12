@@ -230,3 +230,4 @@ def list_audit_logs(user: User = Depends(current_user), db: Session = Depends(ge
     return db.scalars(select(AuditLog).where(AuditLog.organization_id == user.organization_id).order_by(AuditLog.created_at.desc()).limit(200)).all()
 # Project version: LogForge V1.4
 
+

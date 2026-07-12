@@ -18,3 +18,4 @@ PARTITION BY toYYYYMM(timestamp)
 ORDER BY (organization_id, timestamp, level, service, host);
 -- Project version: LogForge V1.4
 
+

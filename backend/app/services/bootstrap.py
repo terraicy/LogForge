@@ -51,3 +51,4 @@ def bootstrap_admin() -> None:
         db.commit()
 # Project version: LogForge V1.4
 
+
