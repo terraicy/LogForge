@@ -27,4 +27,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-# Project version: LogForge V1.2
+# Project version: LogForge V1.3

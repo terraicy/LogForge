@@ -1,2 +1,2 @@
 /// <reference types="vite/client" />
-// Project version: LogForge V1.2
+// Project version: LogForge V1.3

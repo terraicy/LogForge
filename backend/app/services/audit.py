@@ -24,4 +24,4 @@ def write_audit(
             metadata_json=metadata or {},
         )
     )
-# Project version: LogForge V1.2
+# Project version: LogForge V1.3

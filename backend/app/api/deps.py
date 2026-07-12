@@ -44,4 +44,4 @@ def ingest_organization_id(
             db.commit()
             return api_key.organization_id
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API key")
-# Project version: LogForge V1.2
+# Project version: LogForge V1.3

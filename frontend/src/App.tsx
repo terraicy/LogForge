@@ -28,4 +28,4 @@ export function App() {
   }
   return <Layout>{routes[path] ?? <Dashboard />}</Layout>;
 }
-// Project version: LogForge V1.2
+// Project version: LogForge V1.3

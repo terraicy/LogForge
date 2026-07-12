@@ -8,4 +8,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <App />
   </React.StrictMode>
 );
-// Project version: LogForge V1.2
+// Project version: LogForge V1.3

@@ -52,4 +52,4 @@ export function Auth({ mode }: { mode: Mode }) {
     </main>
   );
 }
-// Project version: LogForge V1.2
+// Project version: LogForge V1.3

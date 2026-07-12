@@ -1,4 +1,4 @@
-# LogForge V1.2
+# LogForge V1.3
 
 SIEM-style log operations dashboard for collecting, searching and reviewing defensive telemetry.
 
@@ -80,6 +80,7 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 
 ## Roadmap
 
+- Expanded V1.3 roadmap notes for richer SOC demo data, saved dashboards, and query preset walkthroughs.
 - Add richer demo seed data for sources, alerts and audit logs.
 - Add saved dashboard widgets for common SOC views.
 - Add exportable query presets for portfolio walkthroughs.
@@ -93,4 +94,4 @@ LogForge complements SentinelX endpoint telemetry, ThreatVault file analysis and
 ## License
 
 MIT.
-<!-- Project version: LogForge V1.2 -->
+<!-- Project version: LogForge V1.3 -->

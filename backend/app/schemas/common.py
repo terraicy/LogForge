@@ -156,4 +156,4 @@ class AuditLogResponse(ORMModel):
     target_id: str | None
     metadata_json: dict[str, Any]
     created_at: datetime
-# Project version: LogForge V1.2
+# Project version: LogForge V1.3
