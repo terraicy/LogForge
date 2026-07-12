@@ -74,3 +74,4 @@ export function Settings() {
   );
 }
 // Project version: LogForge V1.4
+

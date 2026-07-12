@@ -73,3 +73,4 @@ volumes:
   clickhouse_data:
   redis_data:
 # Project version: LogForge V1.4
+

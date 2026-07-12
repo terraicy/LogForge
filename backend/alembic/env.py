@@ -44,3 +44,4 @@ if context.is_offline_mode():
 else:
     run_migrations_online()
 # Project version: LogForge V1.4
+

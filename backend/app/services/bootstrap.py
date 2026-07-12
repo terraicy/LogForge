@@ -50,3 +50,4 @@ def bootstrap_admin() -> None:
         write_audit(db, org.id, "bootstrap.admin_create", user.id, "user", str(user.id))
         db.commit()
 # Project version: LogForge V1.4
+

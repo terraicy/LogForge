@@ -32,3 +32,4 @@ docker compose up --build
 - Do not deploy with `.env.example` secrets.
 - Keep ClickHouse/PostgreSQL volumes private.
 <!-- Project version: LogForge V1.4 -->
+
