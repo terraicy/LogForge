@@ -16,4 +16,6 @@ coverage/
 .cache/
 .DS_Store
 docs/
-# Project version: LogForge V1.3
+backend/cpp/**/build/
+backend/cpp/**/*.exe
+# Project version: LogForge V1.4

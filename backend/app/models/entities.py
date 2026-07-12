@@ -122,4 +122,4 @@ class AuditLog(Base):
     target_id: Mapped[str | None] = mapped_column(String(120))
     metadata_json: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now_utc, nullable=False)
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

@@ -228,4 +228,4 @@ def create_dashboard(payload: DashboardCreate, user: User = Depends(current_user
 @router.get("/audit-logs", response_model=list[AuditLogResponse])
 def list_audit_logs(user: User = Depends(current_user), db: Session = Depends(get_db)):
     return db.scalars(select(AuditLog).where(AuditLog.organization_id == user.organization_id).order_by(AuditLog.created_at.desc()).limit(200)).all()
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

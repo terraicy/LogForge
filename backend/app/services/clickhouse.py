@@ -1,6 +1,10 @@
 import json
+import os
+import subprocess
 import uuid
 from datetime import datetime, timezone
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 import clickhouse_connect
@@ -8,7 +12,38 @@ import clickhouse_connect
 from app.core.config import settings
 from app.schemas import LogIngestItem, LogSearchRequest
 
+CPP_LOG_NORMALIZER_ENV = "LOGFORGE_CPP_LOG_NORMALIZER"
+CPP_FORCE_ENV = "LOGFORGE_FORCE_CPP"
+CPP_MESSAGE_THRESHOLD_BYTES = 4096
 
+
+def _cpp_log_normalizer_path() -> Path:
+    suffix = ".exe" if os.name == "nt" else ""
+    return Path(__file__).resolve().parents[2] / "cpp" / "log_normalizer" / f"logforge-log-normalizer{suffix}"
+
+
+def _normalize_level_cpp(level: str | None, message: str) -> str | None:
+    if os.getenv(CPP_FORCE_ENV) != "1" and len(message.encode("utf-8")) < CPP_MESSAGE_THRESHOLD_BYTES:
+        return None
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if not binary.exists():
+        return None
+    try:
+        completed = subprocess.run(
+            [str(binary), level or "-"],
+            capture_output=True,
+            check=True,
+            input=message,
+            text=True,
+            timeout=5,
+        )
+        return completed.stdout.strip()
+    except Exception:
+        return None
+
+
+@lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(
         host=settings.clickhouse_host,
@@ -116,6 +151,9 @@ def search_events(organization_id: uuid.UUID, query: LogSearchRequest) -> list[d
 
 
 def normalize_level(level: str | None, message: str) -> str:
+    cpp_level = _normalize_level_cpp(level, message)
+    if cpp_level:
+        return cpp_level
     if level:
         return level.lower()
     lowered = message.lower()
@@ -135,4 +173,4 @@ def normalize_fields(fields: dict[str, Any], message: str) -> dict[str, Any]:
         except json.JSONDecodeError:
             pass
     return normalized
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

@@ -18,4 +18,4 @@ def get_db():
         yield db
     finally:
         db.close()
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

@@ -1,2 +1,2 @@
 from app.schemas.common import *
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

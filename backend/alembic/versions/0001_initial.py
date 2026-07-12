@@ -110,4 +110,4 @@ def downgrade() -> None:
     op.drop_table("audit_logs")
     for table in ("dashboards", "alert_rules", "saved_searches", "pipelines", "log_sources", "api_keys", "users", "organizations"):
         op.drop_table(table)
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

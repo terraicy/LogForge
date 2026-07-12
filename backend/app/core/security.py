@@ -39,4 +39,4 @@ def generate_api_key() -> tuple[str, str]:
 
 def verify_api_key(raw_key: str, key_hash: str) -> bool:
     return pwd_context.verify(raw_key, key_hash)
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4

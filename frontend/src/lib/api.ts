@@ -95,4 +95,4 @@ export function post<T>(path: string, body: unknown) {
 export function patch<T>(path: string, body: unknown) {
   return api<T>(path, { method: "PATCH", body: JSON.stringify(body) });
 }
-// Project version: LogForge V1.3
+// Project version: LogForge V1.4

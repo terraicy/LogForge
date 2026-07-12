@@ -10,4 +10,4 @@ passlib[bcrypt]==1.7.4
 clickhouse-connect==0.8.10
 redis==5.2.1
 python-multipart==0.0.20
-# Project version: LogForge V1.3
+# Project version: LogForge V1.4
