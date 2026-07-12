@@ -52,3 +52,4 @@ def bootstrap_admin() -> None:
 # Project version: LogForge V1.4
 
 
+

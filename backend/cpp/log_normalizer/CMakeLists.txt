@@ -6,3 +6,4 @@ target_compile_features(logforge-log-normalizer PRIVATE cxx_std_17)
 # Project version: LogForge V1.4
 
 
+
