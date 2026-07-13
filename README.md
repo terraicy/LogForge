@@ -83,6 +83,7 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 
 - FastAPI and React public demo for sources, alert rules, saved searches and audit logs.
 - C++ log normalizer path with safe Python fallback and cached ClickHouse client usage.
+- C++ ingestion field extractor for service, host, trace and request metadata in log lines.
 - Production guards for secrets, CORS, debug mode and demo isolation.
 - Health and forced-normalizer smoke checks for the C++ acceleration path.
 
@@ -91,7 +92,7 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 - Richer synthetic SOC demo data for sources, alerts and audit events.
 - Saved dashboard widgets and exportable query presets.
 - Role-limited public demo controls and hosted read-only profile.
-- Expanded ingestion validation and query workflow tests.
+- Expanded query workflow tests and ClickHouse integration checks.
 
 ## KRYNEX Ecosystem
 

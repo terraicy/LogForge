@@ -28,14 +28,41 @@ std::string normalize_level(const std::string& level, const std::string& message
     return "info";
 }
 
+std::string value_after(const std::string& message, const std::string& key) {
+    const std::string lowered = lower_copy(message);
+    const auto pos = lowered.find(key + "=");
+    if (pos == std::string::npos) {
+        return "";
+    }
+    const auto start = pos + key.size() + 1;
+    auto end = lowered.find_first_of(" \t\r\n,;", start);
+    if (end == std::string::npos) {
+        end = message.size();
+    }
+    return message.substr(start, end - start);
+}
+
+void write_field_lines(const std::string& message) {
+    for (const auto& key : std::vector<std::string>{"service", "host", "trace_id", "request_id", "user"}) {
+        const auto value = value_after(message, key);
+        if (!value.empty()) {
+            std::cout << key << "=" << value << "\n";
+        }
+    }
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
-    if (argc != 2) return 2;
+    if (argc != 2 && argc != 3) return 2;
     std::ostringstream buffer;
     buffer << std::cin.rdbuf();
     const std::string input = buffer.str();
     if (input.size() > MAX_MESSAGE_BYTES) return 3;
+    if (argc == 3 && std::string(argv[1]) == "fields") {
+        write_field_lines(input);
+        return 0;
+    }
     std::cout << normalize_level(argv[1], input) << "\n";
     return 0;
 }

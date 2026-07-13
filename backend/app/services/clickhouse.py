@@ -43,6 +43,32 @@ def _normalize_level_cpp(level: str | None, message: str) -> str | None:
         return None
 
 
+def _extract_fields_cpp(message: str) -> dict[str, str]:
+    if os.getenv(CPP_FORCE_ENV) != "1" and len(message.encode("utf-8")) < CPP_MESSAGE_THRESHOLD_BYTES:
+        return {}
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if not binary.exists():
+        return {}
+    try:
+        completed = subprocess.run(
+            [str(binary), "fields", "-"],
+            capture_output=True,
+            check=True,
+            input=message,
+            text=True,
+            timeout=5,
+        )
+    except Exception:
+        return {}
+    extracted: dict[str, str] = {}
+    for line in completed.stdout.splitlines():
+        key, sep, value = line.partition("=")
+        if sep and key and value:
+            extracted[key] = value
+    return extracted
+
+
 @lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(
@@ -164,7 +190,7 @@ def normalize_level(level: str | None, message: str) -> str:
 
 
 def normalize_fields(fields: dict[str, Any], message: str) -> dict[str, Any]:
-    normalized = dict(fields)
+    normalized = {**_extract_fields_cpp(message), **fields}
     if message.strip().startswith("{"):
         try:
             parsed = json.loads(message)
