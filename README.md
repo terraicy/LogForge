@@ -84,13 +84,14 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 - FastAPI and React public demo for sources, alert rules, saved searches and audit logs.
 - C++ log normalizer path with safe Python fallback and cached ClickHouse client usage.
 - C++ ingestion field extractor for service, host, trace and request metadata in log lines.
+- C++ query preset generator for errors, warnings, auth and slow API investigation views.
 - Production guards for secrets, CORS, debug mode and demo isolation.
 - Health and forced-normalizer smoke checks for the C++ acceleration path.
 
 ### Will be implemented
 
 - Richer synthetic SOC demo data for sources, alerts and audit events.
-- Saved dashboard widgets and exportable query presets.
+- Saved dashboard widgets backed by the query preset engine.
 - Role-limited public demo controls and hosted read-only profile.
 - Expanded query workflow tests and ClickHouse integration checks.
 

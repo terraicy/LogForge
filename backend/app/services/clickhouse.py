@@ -69,6 +69,32 @@ def _extract_fields_cpp(message: str) -> dict[str, str]:
     return extracted
 
 
+def query_preset(name: str) -> dict[str, Any]:
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if binary.exists():
+        try:
+            completed = subprocess.run(
+                [str(binary), "preset", name],
+                capture_output=True,
+                check=True,
+                text=True,
+                timeout=5,
+            )
+            parsed = json.loads(completed.stdout)
+            if isinstance(parsed, dict):
+                return parsed
+        except Exception:
+            pass
+    fallback = {
+        "errors": {"level": "error", "limit": 100},
+        "warnings": {"level": "warn", "limit": 100},
+        "auth": {"text": "login", "limit": 100},
+        "slow-api": {"service": "api", "text": "slow", "limit": 100},
+    }
+    return fallback.get(name, {"text": name, "limit": 100})
+
+
 @lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(

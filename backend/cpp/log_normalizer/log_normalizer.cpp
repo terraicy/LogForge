@@ -51,10 +51,29 @@ void write_field_lines(const std::string& message) {
     }
 }
 
+void write_preset(const std::string& name) {
+    const std::string key = lower_copy(name);
+    if (key == "errors") {
+        std::cout << "{\"level\":\"error\",\"limit\":100}\n";
+    } else if (key == "auth") {
+        std::cout << "{\"text\":\"login\",\"limit\":100}\n";
+    } else if (key == "slow-api") {
+        std::cout << "{\"service\":\"api\",\"text\":\"slow\",\"limit\":100}\n";
+    } else if (key == "warnings") {
+        std::cout << "{\"level\":\"warn\",\"limit\":100}\n";
+    } else {
+        std::cout << "{\"text\":\"" << key << "\",\"limit\":100}\n";
+    }
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
     if (argc != 2 && argc != 3) return 2;
+    if (argc == 3 && std::string(argv[1]) == "preset") {
+        write_preset(argv[2]);
+        return 0;
+    }
     std::ostringstream buffer;
     buffer << std::cin.rdbuf();
     const std::string input = buffer.str();
