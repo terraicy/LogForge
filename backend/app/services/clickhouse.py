@@ -95,6 +95,31 @@ def query_preset(name: str) -> dict[str, Any]:
     return fallback.get(name, {"text": name, "limit": 100})
 
 
+def retention_policy(tier: str) -> dict[str, int | str]:
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if binary.exists():
+        try:
+            completed = subprocess.run(
+                [str(binary), "retention", tier],
+                capture_output=True,
+                check=True,
+                text=True,
+                timeout=5,
+            )
+            parsed = json.loads(completed.stdout)
+            if isinstance(parsed, dict):
+                return parsed
+        except Exception:
+            pass
+    fallback = {
+        "audit": {"tier": "audit", "hot_days": 30, "warm_days": 180},
+        "debug": {"tier": "debug", "hot_days": 2, "warm_days": 7},
+        "security": {"tier": "security", "hot_days": 14, "warm_days": 90},
+    }
+    return fallback.get(tier, {"tier": tier, "hot_days": 7, "warm_days": 30})
+
+
 @lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(

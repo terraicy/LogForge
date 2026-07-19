@@ -66,12 +66,34 @@ void write_preset(const std::string& name) {
     }
 }
 
+void write_retention(const std::string& tier) {
+    const std::string key = lower_copy(tier);
+    int hot_days = 7;
+    int warm_days = 30;
+    if (key == "audit") {
+        hot_days = 30;
+        warm_days = 180;
+    } else if (key == "debug") {
+        hot_days = 2;
+        warm_days = 7;
+    } else if (key == "security") {
+        hot_days = 14;
+        warm_days = 90;
+    }
+    std::cout << "{\"tier\":\"" << key << "\",\"hot_days\":" << hot_days
+              << ",\"warm_days\":" << warm_days << "}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
     if (argc != 2 && argc != 3) return 2;
     if (argc == 3 && std::string(argv[1]) == "preset") {
         write_preset(argv[2]);
+        return 0;
+    }
+    if (argc == 3 && std::string(argv[1]) == "retention") {
+        write_retention(argv[2]);
         return 0;
     }
     std::ostringstream buffer;
