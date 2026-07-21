@@ -84,6 +84,19 @@ void write_retention(const std::string& tier) {
               << ",\"warm_days\":" << warm_days << "}\n";
 }
 
+void write_route(const std::string& level) {
+    const std::string key = lower_copy(level);
+    std::string stream = "logs.default";
+    if (key == "fatal" || key == "error") {
+        stream = "logs.incidents";
+    } else if (key == "warn") {
+        stream = "logs.review";
+    } else if (key == "debug" || key == "trace") {
+        stream = "logs.low_cost";
+    }
+    std::cout << "{\"level\":\"" << key << "\",\"stream\":\"" << stream << "\"}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -94,6 +107,10 @@ int main(int argc, char** argv) {
     }
     if (argc == 3 && std::string(argv[1]) == "retention") {
         write_retention(argv[2]);
+        return 0;
+    }
+    if (argc == 3 && std::string(argv[1]) == "route") {
+        write_route(argv[2]);
         return 0;
     }
     std::ostringstream buffer;

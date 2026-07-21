@@ -120,6 +120,35 @@ def retention_policy(tier: str) -> dict[str, int | str]:
     return fallback.get(tier, {"tier": tier, "hot_days": 7, "warm_days": 30})
 
 
+def route_for_level(level: str) -> dict[str, str]:
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if binary.exists():
+        try:
+            completed = subprocess.run(
+                [str(binary), "route", level],
+                capture_output=True,
+                check=True,
+                text=True,
+                timeout=5,
+            )
+            parsed = json.loads(completed.stdout)
+            if isinstance(parsed, dict):
+                return {str(key): str(value) for key, value in parsed.items()}
+        except Exception:
+            pass
+    key = level.lower()
+    if key in {"fatal", "error"}:
+        stream = "logs.incidents"
+    elif key == "warn":
+        stream = "logs.review"
+    elif key in {"debug", "trace"}:
+        stream = "logs.low_cost"
+    else:
+        stream = "logs.default"
+    return {"level": key, "stream": stream}
+
+
 @lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(
