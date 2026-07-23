@@ -97,6 +97,13 @@ void write_route(const std::string& level) {
     std::cout << "{\"level\":\"" << key << "\",\"stream\":\"" << stream << "\"}\n";
 }
 
+void write_cost_hint(const std::string& level) {
+    const std::string key = lower_copy(level);
+    const std::string cost = key == "debug" || key == "trace" ? "low_cost" :
+                             key == "error" || key == "fatal" ? "hot" : "standard";
+    std::cout << "{\"level\":\"" << key << "\",\"cost_hint\":\"" << cost << "\"}\n";
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -111,6 +118,10 @@ int main(int argc, char** argv) {
     }
     if (argc == 3 && std::string(argv[1]) == "route") {
         write_route(argv[2]);
+        return 0;
+    }
+    if (argc == 3 && std::string(argv[1]) == "cost") {
+        write_cost_hint(argv[2]);
         return 0;
     }
     std::ostringstream buffer;

@@ -149,6 +149,28 @@ def route_for_level(level: str) -> dict[str, str]:
     return {"level": key, "stream": stream}
 
 
+def cost_hint_for_level(level: str) -> dict[str, str]:
+    configured = os.getenv(CPP_LOG_NORMALIZER_ENV)
+    binary = Path(configured) if configured else _cpp_log_normalizer_path()
+    if binary.exists():
+        try:
+            completed = subprocess.run(
+                [str(binary), "cost", level],
+                capture_output=True,
+                check=True,
+                text=True,
+                timeout=5,
+            )
+            parsed = json.loads(completed.stdout)
+            if isinstance(parsed, dict):
+                return {str(key): str(value) for key, value in parsed.items()}
+        except Exception:
+            pass
+    key = level.lower()
+    cost = "low_cost" if key in {"debug", "trace"} else "hot" if key in {"error", "fatal"} else "standard"
+    return {"level": key, "cost_hint": cost}
+
+
 @lru_cache(maxsize=1)
 def client():
     return clickhouse_connect.get_client(

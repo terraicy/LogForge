@@ -87,13 +87,14 @@ LogForge is defensive-only. It is intended for log collection, search, alerting 
 - C++ query preset generator for errors, warnings, auth and slow API investigation views.
 - C++ retention policy helper for audit, debug and security telemetry tiers.
 - C++ log-level route helper for incident, review and low-cost streams.
+- C++ cost hint helper for hot, standard and low-cost telemetry routing.
 - Production guards for secrets, CORS, debug mode and demo isolation.
 - Health and forced-normalizer smoke checks for the C++ acceleration path.
 
 ### Will be implemented
 
 - Richer synthetic SOC demo data for sources, alerts and audit events.
-- Saved dashboard widgets backed by query presets, route previews and retention policies.
+- Saved dashboard widgets backed by query presets, route previews, cost hints and retention policies.
 - Role-limited public demo controls and hosted read-only profile.
 - Expanded query workflow tests and ClickHouse integration checks.
 
